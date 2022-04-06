@@ -1,0 +1,136 @@
+% Created 2022-03-22 Tue 04:11
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 1: Linear Search}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 1: Linear Search},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 4/6 12:30pm} \\ 
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\section{(10 pts)}
+\label{sec:org9fa09aa}
+
+Before attending your first discussion section (lab), please ensure
+that you can access your CSIL / College of Engineering
+Account. Either visit CSIL (the lab on first floor ocean side of
+Harold Frank Hall), and try to login, or use an ssh client to see if
+you can access csil.cs.ucsb.edu.
+
+If you need help creating or accessing your CoE/CSIL account, visit
+\url{https://accounts.engr.ucsb.edu}
+
+Then, write your College of Engineering account username below. DO NOT
+WRITE YOUR PASSWORD. DO NOT EVER WRITE YOUR PASSWORD!!
+
+\begin{description}
+    \item[Answer:] bkathi
+\end{description}
+
+\vspace{4em}
+
+\textbf{Course Textbooks}
+
+\begin{itemize}
+\item \textbf{PS9}: \emph{Problem Solving with C++, 9th Edition} by Walter Savitch (used in CS16 - Purple/Blue cover. There is a newer edition available, but I don't expect everyone to buy a new edition if you already have the 9th edition from when you took CS 16).
+\item \textbf{DS4}: \emph{Data Structures and Other Objects Using C++, 4th edition} by Michael Main and Walter Savitch (used in some iterations of CS24 - Brown cover)
+\item \textbf{OSTEP}: \emph{Operating Systems: Three Easy Pieces} by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (only some chapters, available online)
+\end{itemize}
+
+Both books are required for this course. OSTEP is available legally and for free online.
+This homework will only refer to DS4 (the brown book), but future homework assignments may draw on either or both of the two books.
+
+\textbf{Reading:} In DS4 read pages 584-594.
+
+Also, read the "C++ Feature" box about \texttt{size\_t} on p. 100. You only
+need to read the part in the sans-serif font beside the "C++ Feature"
+logo, but if you read a few extra lines of the main text, you'll see
+better how \texttt{size\_t} is used. Since \texttt{size\_t} is used in Section 12.1,
+it's helpful to review this material from Chapter 3 in case you
+glossed over it during CS24.
+
+Then, answer the questions on the remaining pages of this homework.
+
+\newpage
+
+Questions about DS4, pages 584-586:
+
+\section{(10 pts)}
+\label{sec:orged7d330}
+
+Serial search is also called linear search. Suppose you are writing
+a standalone C++ function called \texttt{linearSearch} that searches
+through an unsorted C++ builtin array array of int values using this
+technique. Write the function prototype for this function—ONLY the
+function protototype. Be sure to include the name and type all the
+input parameters you would need, and a suitable type for the return
+value. Assume the function returns the index of the value if found,
+and -1 if the value is not found. Choose parameter names that make
+sense and represent good programming style (i.e. clearly document
+the purpose of the parameters that are being passed in.)
+
+\vspace{8em}
+
+\section{(10 pts)}
+\label{sec:orgfab6161}
+For this question, please review pp 584-586 and read both sides of
+the handout
+(\url{http://www.cs.ucsb.edu/\~emre/cs32/hw/1-handout.pdf}). Then
+answer this question about the expected number of array accesses for
+linear search.
+
+\begin{itemize}
+\item Suppose there are nine array elements, \texttt{a[0]} through \texttt{a[8]}.
+\item Each of the odd elements, \texttt{a[1]}, \texttt{a[3]}, \texttt{a[5]}, and \texttt{a[7]} has a 10\% chance (0.1) of being the one searched for.
+\item Each of the even elements \texttt{a[0]}, \texttt{a[2]}, \texttt{a[4]}, \texttt{a[6]} and \texttt{a[8]} has a 5\% change (0.05) of being the one searched for.
+\item With probability 35\% (0.35), the element being sought is not found in the array.
+\end{itemize}
+
+In this case, what is the expected number of array accesses?
+
+\newpage
+
+In CS24, you should have learned about big-O analysis, i.e. asymptotic worst-case run-time analysis.
+
+\section{(10 pts)}
+\label{sec:org26d30f8}
+
+What is the big-O analysis of a find(key) operation on a sorted array of \(n\) keys, implemented using \emph{binary search}? Circle your answer.
+
+Note that log, in the context of big-O, typically means log based 2, but since all logs are related by a constant factor, i.e. for any value of \(b\), there is a constant \(C\) such that \(\log_2(x) = C\log_b(x)\).
+
+
+\begin{center}
+\begin{tabular}{llllll}
+\(O(1)\) & \(O(\log n)\) & \(O(n)\) & \(O(n \log n)\) & \(O(n^2)\) & \(O(n^3)\)\\
+\end{tabular}
+\end{center}
+
+\section{(10 pts)}
+\label{sec:org88ffa43}
+Explain why this is the running time for binary search. A "formal proof" is not required—just a \emph{brief} intuitive explanation that shows you understand why this is the running time.
+\end{document}

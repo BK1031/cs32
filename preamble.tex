@@ -1,0 +1,151 @@
+% org has these:
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+
+\usepackage[letterpaper,margin=2cm]{geometry}
+%\usepackage{fullpage}
+% a better font family
+\usepackage{lmodern} % for sans serif, the fonts below overrride this
+\usepackage{eulervm}
+%\usepackage{newpxtext}
+% \usepackage{newpxmath}
+\usepackage{mathpazo}
+%\usepackage{beton}
+%\usepackage[default]{comicneue}
+
+\usepackage{xcolor}
+
+% \usepackage{amssymb}
+\usepackage{amsthm}
+% \usepackage{amsmath}
+\usepackage{amstext}
+% math tools for amsmath
+\usepackage{mathtools}
+% ceiling and floor symbols
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{braket} % to enter bra-ket notation - easily
+\usepackage{wasysym}
+
+% to draw quantum circuits
+\usepackage{qcircuit}
+
+% for more enumeration style options
+% \usepackage{enumerate}
+\usepackage{enumitem}
+
+% for references, org-mode already has these
+% \usepackage{varioref}
+% \usepackage[hidelinks]{hyperref}
+\usepackage{cleveref} % for automatically entering reference types (theorem, figure, section etc.)
+
+\usepackage{titling, titlesec}
+\usepackage{slantsc} 
+
+% bibliography style
+\bibliographystyle{acm}
+
+% theorem types
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+% theorem types' names for cleveref
+\crefname{thm}{theorem}{theorems}
+\crefname{lem}{lemma}{lemmas}
+\crefname{cor}{corollary}{corollaries}
+\Crefname{thm}{Theorem}{Theorems}
+\Crefname{lem}{Lemma}{Lemmas}
+\Crefname{cor}{Corollary}{Corollaries}
+
+\newcommand{\draftnote}[1]{\textcolor{red}{#1}}
+
+\newcommand*{\QED}{\null\hfill\qedsymbol}
+
+% I mistype texttt sometimes
+\newcommand{\textt}{\texttt}
+% ease to enter some functions in math mode
+\newcommand{\fn}{\mathrm}
+\newcommand{\bigO}{\fn{O}}
+\newcommand{\argmax}{\fn{argmax}}
+\newcommand{\ii}{\imath}
+\newcommand{\qre}{q^\circ}
+\newcommand{\qim}{q^\ast}
+\newcommand{\transop}{\mathcal{E}}
+\newcommand{\lcm}{\fn{lcm}}
+\newcommand{\Str}{\mathbb{S}}
+\newcommand{\Sign}{\Str}
+\newcommand{\Concrete}{\mathcal{P}(\Sigma^*)}
+\newcommand{\true}{\mathrm{true}}
+\newcommand{\false}{\mathrm{false}}
+\newcommand{\conj}{\overline}
+\newcommand{\otherwise}{\textrm{ otherwise}}
+\newcommand{\where}[1]{\textrm{ where {#1}}}
+
+% norms and absolute values
+\newcommand{\abs}[1]{\left\vert{}#1\right\vert}
+\newcommand{\norm}[1]{\left\Vert{}#1\right\Vert}
+\newcommand{\fnorm}[1]{\norm{#1}_F}
+\newcommand{\pnorm}[2]{\norm{#1}_{#2}}
+\newcommand{\supx}[1]{\sup_{#1 \neq 0}}
+\newcommand{\supn}[2]{\sup_{\norm{#1}_{#2} = 1}}
+
+% trace
+\DeclareMathOperator{\tr}{Tr}
+
+%\newcommand{\span}{\fn{span}}
+\newcommand{\cols}{\fn{cols}}
+\newcommand{\range}{\mathcal{R}}
+\newcommand{\rank}{\fn{rank}}
+\newcommand{\eye}{\fn{I}}
+
+\newcommand{\diag}[1]{\fn{diag}\left\{#1\right\}}
+
+% small matrices
+\newenvironment{mat}[1]{\left(\begin{array}{#1}}{\end{array}\right)}
+\newcommand{\matone}[1]{\begin{mat}{l}#1\end{mat}}
+\newcommand{\mattwo}[1]{\begin{mat}{ll}#1\end{mat}}
+\newcommand{\matthree}[1]{\begin{mat}{lll}#1\end{mat}}
+\newcommand{\matfour}[1]{\begin{mat}{llll}#1\end{mat}}
+
+\newcommand{\eyetwo}{\mattwo{1 & 0 \\ 0 & 1}}
+
+% extra functions
+\DeclareMathOperator{\fid}{F} % fidelity
+\DeclareMathOperator{\vecOf}{vec} % vectorization
+
+% special sets
+\newcommand{\mset}{\mathbb}
+\newcommand{\reals}{\mset{R}}
+\newcommand{\realmat}[2]{\reals^{#1 \times #2}}
+\newcommand{\complex}{\mset{C}}
+\newcommand{\complexmat}[2]{\complex^{#1 \times #2}}
+\newcommand{\zahlen}{\mset{Z}}
+\newcommand{\ints}{\zahlen}
+\newcommand{\nats}{\mset{N}}
+% group, field etc.
+\newcommand{\field}{\mset{F}}
+
+% questions
+\newenvironment{questions}
+{\begin{enumerate}[label={Question \arabic*},wide,font=\bf]}
+  {\end{enumerate}}
+
+\newcommand{\question}{\item \mbox{} \\}
+\newcommand{\Question}{\newpage \item \mbox{} \\}
+
+% notation
+\newcommand{\notation}[1]{
+\textbf{Notation.} #1
+}
+
+% quantum gates
+\newcommand{\qgate}[1]{\mathrm{#1}}
+\newcommand{\SWAP}{\qgate{SWAP}}
+\newcommand{\SSWAP}{\sqrt{\SWAP}}
+
+% spaces
+\newcommand{\lin}{\mathcal{L}}
+\newcommand{\unitary}[1]{\mathcal{U}(#1)}
+\newcommand{\density}{\mathcal{D}}
+\newcommand{\stdbasis}{\mathcal{B}}
