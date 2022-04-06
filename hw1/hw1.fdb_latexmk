@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1649233062 "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.tex" "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.pdf" "hw1" 1649235857
+["pdflatex"] 1649242054 "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.tex" "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.pdf" "hw1" 1649242059
   "../preamble.tex" 1649232760 4122 a4a67e66f74ecc8710f99e98066d3665 ""
-  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.aux" 1649233063 1816 15b97c51c860ff6c71cc20276c921eba ""
-  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.tex" 1649235856 5427 8500d0a565ddfa6cf567f7cece14c24e ""
+  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.aux" 1649242054 1816 15b97c51c860ff6c71cc20276c921eba ""
+  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.tex" 1649242059 6569 8758b5b9d45a795ad7c9d82ed8d2f086 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -153,13 +153,13 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1636459387 2724738 020563dea0138c28263bdf1bf2b59933 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "hw1.aux" 1649233063 1816 15b97c51c860ff6c71cc20276c921eba "pdflatex"
-  "hw1.out" 1649233063 460 7f3d783539662916c7f10d153bfaf148 "pdflatex"
-  "hw1.tex" 1649235856 5427 8500d0a565ddfa6cf567f7cece14c24e ""
+  "hw1.aux" 1649242054 1816 15b97c51c860ff6c71cc20276c921eba "pdflatex"
+  "hw1.out" 1649242054 460 7f3d783539662916c7f10d153bfaf148 "pdflatex"
+  "hw1.tex" 1649242059 6569 8758b5b9d45a795ad7c9d82ed8d2f086 ""
   (generated)
-  "hw1.pdf"
   "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.pdf"
-  "hw1.aux"
-  "hw1.out"
-  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.log"
   "hw1.log"
+  "hw1.out"
+  "hw1.aux"
+  "hw1.pdf"
+  "/Users/bk1031/Documents/Projects/cs32/hw1/hw1.log"
