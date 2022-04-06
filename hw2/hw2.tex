@@ -1,0 +1,193 @@
+% Created 2022-03-22 Tue 04:12
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 2: Templates and the standard library}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 2: Templates and the standard library},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 4/6 12:30pm} \\ 
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+
+\textbf{Reading:} "Templates and the STL", PS 8.3, 17, 18
+
+\section{(10 pts)}
+\label{sec:org04b3bf2}
+In the lecture, we talked about STL being a misnomer. STL was a
+historical predecessor of parts of the C++ standard
+library. Nowadays, we would refer to those parts by name. What are
+the four components of STL that are now part of the standard library?
+
+\begin{description}
+  \item[Answer:] .\\
+  Algorithms, Containers, Iterators, Functions
+\end{description}
+
+
+\section{(8 pts)}
+\label{sec:org51d9e2c}
+Suppose we have a C++ class called \texttt{Student}. There are many ways one can create a collection \texttt{Student} objects.  Among these: one can use a normal C++ array or an STL \texttt{vector}, and one could create a collection of objects, or of pointers to objects (presumably allocated on the heap.) 
+\begin{enumerate}
+\item (2 pts) Write a line of C++ code that declares an array \texttt{a} that can hold 10 objects of type \texttt{Student}.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+Student a[10];
+  \end{verbatim}
+\end{description}
+
+\item (2 pts) Write a line of C++ code that declares an array \texttt{b} that can hold 10 pointers to objects of type \texttt{Student}.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+Student* b[10];
+  \end{verbatim}
+\end{description}
+
+\item (2 pts) Write a line of C++ code that declares a standard library vector \texttt{c} that can hold 10 objects of type \texttt{Student}.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+vector<Student> c(10);
+  \end{verbatim}
+\end{description}
+
+\item (2 pts) Write a line of C++ code that declares a standard library vector \texttt{d} that can hold 10 pointers to objects of type \texttt{Student}.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+vector<Student*> d(10);
+  \end{verbatim}
+\end{description}
+
+\end{enumerate}
+
+\section{(20 pts)}
+\label{sec:org0e79471}
+In the previous problem, you were asked to write four different
+declarations, 1, 2, 3, 4.  Each of these has "pros" and "cons".
+There are also differences among them that we might describe as
+"neutral", for whether they are a pro/con depends on the context.
+For the "pros" and "cons" below, please indicate which of the
+options above (1, 2, 3, 4) the statement applies to.  Note that in
+some cases, you may have to indicate more than one number.
+
+Circle the numbers to which the statement applies.  If you mess up,
+cross out all the letters and list the letters in the space to the
+right.
+
+\begin{center}
+\begin{tabular}{p{14cm}|c}
+Hero or zero? & Choices\\
+\hline
+Con: Additional \texttt{\#include} directives are required to use this approach. & \(- \quad  - \quad 3 \quad 4\)\\
+\hline
+Pro: The item declared can be expanded beyond 10 items if needed. & \(- \quad - \quad 3 \quad 4\)\\
+\hline
+Pro: You can declare this item without actually creating any Student objects. & \(1 \quad 2 \quad 3 \quad 4\)\\
+\hline
+Con: The class MUST have a default constructor, or this declaration is not permitted. & \(- \quad - \quad - \quad -\)\\
+\hline
+Pro: All space for the item and the Students it contains are co-located in memory--on the stack if the item is declared as a local. & \(1 \quad 2 \quad - \quad -\)\\
+\end{tabular}
+\end{center}
+\begin{description}
+  \item[Answer:] The remaining numbers are my selections in the table above.
+\end{description}
+\newpage
+
+\section{(3 pts)}
+\label{sec:org618d2e3}
+In your own words, what is the "problem" for which "templates for
+functions" is a solution? I'm looking for a \textbf{brief}
+description--a single sentence, or at most 2-3 sentences that
+get to the \emph{central point}, a description of the \emph{problem}, not a
+detailed description of everything you know about templates, and
+certainly \emph{not} a sentence copied, word-for-word, from either
+textbook.
+
+\begin{description}
+  \item[Answer:] .\\
+  Templates are useful to abstract certain functions that can be used for multiple data types.
+  This way you only need to implement your function once, but are able to use it with any data type.
+\end{description}
+
+
+\section{(3 pts)}
+\label{sec:org3ade83d}
+The C++ syntax for function templates includes \texttt{template <class
+  Item>}.  The name \texttt{Item} in the example above is preceeded by the
+keyword \texttt{class}.  One might infer from that that \texttt{Item} should be
+the name of some \texttt{class}, e.g. \texttt{class Student}, or \texttt{class Roster},
+etc.  But that is not a correct assumption.  Explain
+why \textbf{briefly}.
+
+\begin{description}
+  \item[Answer:] .\\
+  \texttt{Item} is just a placeholder class for you to use in your class implementations.
+  Then when you actually use the class and create instances of it, you can pass in whichever class you want to be used inside your template.
+\end{description}
+
+
+\section{(6 pts)}
+\label{sec:org1cba9c0}
+
+Let's say you have a function \texttt{int calc(int operand1, int operand2,
+char op)} where \texttt{op} is either \texttt{+} or \texttt{-}.  Instead of overloading
+this function for each numerical datatype in C++ (e.g. also defining
+it for \texttt{float}, \texttt{double}, etc., you want to create a generic function
+that is far more flexible.  In the space below, define \texttt{calc} as a
+template function.  If op is neither \texttt{+} nor \texttt{-} , print an error
+message on \texttt{std::cerr} and call the system function \texttt{exit(1);} (you
+may assume that \texttt{\#include <cstdlib>} has already been done.)\footnote{Note
+that once we've covered exceptions, that would be a better approach
+than the \texttt{cerr/exit} technique.}
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+template<class T>
+T calc(T operand1, T operand2, char op) {
+  if (op == ‘+’) {
+    return operand1 + operand2;
+  }
+  else if (op == ‘-‘) {
+    return operand 1 - operand2;
+  }
+  else {
+    std::cerr << “invalid operation received, must be + or -”;
+    exit(1);
+  }
+}
+    \end{verbatim}
+\end{description}
+
+\end{document}
