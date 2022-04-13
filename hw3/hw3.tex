@@ -1,0 +1,161 @@
+% Created 2022-04-04 Mon 15:02
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 3: Object-Oriented Design}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 3: Object-Oriented Design},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 4/13 12:30pm} \\ 
+\textbf{Name \& Perm \#:} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading: Object Oriented Design, PS 10.2}
+
+
+\section{}
+\label{sec:org311bec3}
+According to Savitch in PS, the scope resolution operator \texttt{::} and
+the dot operator \texttt{.} have a similar purpose, but there is a major
+difference between them.
+\begin{enumerate}
+\item (5 pts) What do they have in common?
+\begin{description}
+    \item[Answer:] .\\
+    They both are used to tell what a member function is a member of.
+  \end{description}
+\vspace{2em}
+\item (5 pts) What is the difference between them?
+\begin{description}
+    \item[Answer:] .\\
+    The dot operator is used on actual objects, while the seperator is used on classes.
+  \end{description}
+\vspace{6em}
+\end{enumerate}
+
+
+In a class for an object representing a video game character: 
+\section{(5 pts)}
+\label{sec:orge0fd38b}
+Would \texttt{setHealth} be an accessor or a mutator function?
+    Circle one: accessor \(\quad\) mutator
+    \begin{description}
+        \item[Answer:] .\\
+        mutator
+    \end{description}
+\section{(5 pts)}
+\label{sec:org413e13f}
+Would \texttt{getName} be an accessor or a mutator function?
+    Circle one: accessor \(\quad\) mutator
+    \begin{description}
+        \item[Answer:] .\\
+        accessor
+    \end{description}
+
+\newpage
+
+\section{(5 pts)}
+\label{sec:org6372af0}
+What does the term \emph{encapsulation} refer to?
+\begin{description}
+    \item[Answer:] .\\
+    Encapsulation refers to combining variables and functions under a single class.
+\end{description}
+\vspace{6em}
+
+\section{(5 pts)}
+\label{sec:org66c5004}
+According to Savitch in PS, it is normal practice to make member
+functions private under what circumstances?
+\begin{description}
+    \item[Answer:] .\\
+    When you want a member function accessible to other functions in that class but do not want them to be accessible from outside (callable from objects of the class). This can be useful if a function is a helper function that is only expected to be used by other functions inside that class.
+\end{description}
+\newpage
+
+\section{}
+\label{sec:orgeb87943}
+
+On p. 579 and then again on p. 586 Savitch drives home a point about
+the syntax of invoking a constructor--what you SHOULD do when invoking
+a no-arg constructor, and what you should NOT do. Though he doesn't
+mention it, this is a "trap" that many C++ learners fall into if they
+learned Java first, because this is a place where C++ and Java syntax
+differ significantly.
+
+Suppose you have a no-arg constructor for a class \texttt{Student}.   
+
+\begin{enumerate}
+\item (5 pts) What is the correct syntax to declare a local variable inside a function or method called \texttt{s} that is of type \texttt{Student}, and is created with the no-arg constructor?
+\begin{description}
+    \item[Answer:]
+    \begin{verbatim}
+        Student s;
+    \end{verbatim}
+\end{description}
+\item (5 pts) What is the "wrong" syntax for doing that same thing that Savitch specifically warns \emph{against} doing?
+\begin{description}
+    \item[Answer:]
+    \begin{verbatim}
+        Student s();
+    \end{verbatim}
+\end{description}
+\item (5 pts) In one of the passages where this is explained, Savitch indicates WHY this other syntax is wrong if your intention is to make \texttt{s} an instance of class \texttt{Student}.  This syntax actually has a completely different meaning in C++. What does this alternate syntax mean--that is, what would \texttt{s} be declared to be under this alternate syntax?
+\begin{description}
+    \item[Answer:] .\\
+    The alternate syntax is used for function declaration in C++.
+\end{description}
+
+\item (5 pts) Suppose you have a class \texttt{Student} with private data members as shown below. You could write a constructor like this:
+\end{enumerate}
+\begin{verbatim}
+class Student {
+    private:
+       int perm_;
+       std::string name_;
+  }
+
+  Student::Student(int perm, std::string name) {
+     perm_ = perm;
+     name_ = name;
+  }
+\end{verbatim}
+
+However, there is an alternate way to initialize data members in the
+so called "constructor initialization section" described in Section
+10.2 of PS. Rewrite this constructor so that the body is an empty set
+of braces, and the code is moved to the so-called "constructor
+initialization section".\footnote{Note that I am \emph{not} referring to C++11's
+"constructor delegation" described on p. 587-588; this is a feature
+that has been in C++ for many years before C++11, and is described
+somewhere before p. 581-584.}
+
+\begin{description}
+    \item[Answer:]
+    \begin{verbatim}
+        Student::Student(int perm, std::string name) : perm_(perm), name_(name) {}
+    \end{verbatim}
+\end{description}
+\end{document}

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1649245382 "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.tex" "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.pdf" "hw2" 1649245394
+["pdflatex"] 1649245382 "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.tex" "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.pdf" "hw2" 1649245405
   "../preamble.tex" 1649232760 4122 a4a67e66f74ecc8710f99e98066d3665 ""
   "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.aux" 1649245383 2031 d8ee96137dd21007ef5f8b907199f018 ""
   "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.tex" 1649245394 6879 1f98fb393542fe8617b634077d4aa311 ""
@@ -155,9 +155,9 @@
   "hw2.out" 1649245383 532 1ae49eb137d504d4d74dbca94328b261 "pdflatex"
   "hw2.tex" 1649245394 6879 1f98fb393542fe8617b634077d4aa311 ""
   (generated)
-  "hw2.log"
-  "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.log"
   "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.pdf"
-  "hw2.out"
-  "hw2.pdf"
   "hw2.aux"
+  "hw2.log"
+  "hw2.pdf"
+  "hw2.out"
+  "/Users/bk1031/Documents/Projects/cs32/hw2/hw2.log"
