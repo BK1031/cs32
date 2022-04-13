@@ -30,7 +30,7 @@
 \maketitle
 \textbf{Due: 4/13 12:30pm} \\ 
 \vspace{1em}
-\textbf{Name \& Perm \#:} \\ 
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
 \textbf{Homework buddy (leave blank if you worked alone):}
 
 \vspace{1em}
@@ -55,13 +55,22 @@ you must define the class in a certain way\ldots{}"
 
 \begin{enumerate}
 \item (4 pts) What does ADT stand for?
-\vspace{4em}
+\begin{description}
+    \item[Answer:] .\\
+    ADT stands for Abstract Data Types.
+\end{description}
 \item (4 pts) According to Savitch, a data type consists of a collection
 of values, together with \ldots{} what?
-\vspace{4em}
+\begin{description}
+    \item[Answer:] .\\
+    Data types consist of selections of values together with sets of basic operations for those values.
+\end{description}
 \item (4 pts) According to Savitch, a data type is called an ADT if
 \ldots{} what?
-\vspace{4em}
+\begin{description}
+    \item[Answer:] .\\
+    A data type is an ADT if the actual implementation of values and operations are abstracted to the programmer.
+\end{description}
 \end{enumerate}
 
 \section{}
@@ -75,7 +84,15 @@ What are the two things that should be separated?
 
 \begin{enumerate}
 \item (4 pts) First thing:
+\begin{description}
+    \item[Answer:] .\\
+    The specification for how the type is used by the programmer.
+\end{description}
 \item (4 pts) Second thing:
+\begin{description}
+    \item[Answer:] .\\
+     The details of how the type is implementated.
+\end{description}
 \end{enumerate}
 
 \section{}
@@ -84,8 +101,20 @@ What are the three rules for keeping those things separate?
 
 \begin{enumerate}
 \item (4 pts) Rule 1:
+\begin{description}
+    \item[Answer:] .\\
+    All member variables should be private.
+\end{description}
 \item (4 pts) Rule 2:
+\begin{description}
+    \item[Answer:] .\\
+    All basic operations should be public and should explain to the programmer its use cases.
+\end{description}
 \item (4 pts) Rule 3:
+\begin{description}
+    \item[Answer:] .\\
+    All helper functions should be private.
+\end{description}
 \end{enumerate}
 
 \section{(4 pts)}
@@ -93,12 +122,18 @@ What are the three rules for keeping those things separate?
 
 When you define an ADT as a class, what items are considered part of
 the interface for the ADT?
-\vspace{4em}
+\begin{description}
+    \item[Answer:] .\\
+    The interface for the ADT consists of all the parts of the class that are required to use that data type (e.g. public member functions).
+\end{description}
 
 \section{(4 pts)}
 \label{sec:orgb376198}
 
 When you define an ADT as a class, what items are considered part of
 the implementation for the ADT?
-\vspace{4em}
+\begin{description}
+    \item[Answer:] .\\
+    The implementation of an ADT consists of all the parts of code that actually define the interface. This includes the definitions of public and private member functions, as well as private members of the class.
+\end{description}
 \end{document}
