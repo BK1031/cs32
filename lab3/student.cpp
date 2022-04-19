@@ -4,8 +4,9 @@
 #include <sstream>
 
 Student::Student(const char * const name, int perm) {
-    this->setName(name);
-    this->setPerm(perm);
+    this->name = new char[strlen(name) + 1];
+    strcpy(this->name, name);
+    this->perm = perm;
 }
 
 int Student::getPerm() const {
@@ -21,19 +22,20 @@ void Student::setPerm(const int permNumber) {
 }
 
 void Student::setName(const char * const name) {
-//    delete[] this->name;
+    delete[] this->name;
     this->name = new char[strlen(name)+1];
     strcpy(this->name,name);
 }
 
 
 Student::Student(const Student &orig) {
-    this->setName(orig.getName());
-    this->setPerm(orig.getPerm());
+    this->name = new char[strlen(orig.name) + 1];
+    strcpy(this->name, orig.getName());
+    this->perm = orig.getPerm();
 }
 
 Student::~Student() {
-//    delete[] name;
+    delete[] name;
 }
 
 Student & Student::operator=(const Student &right) {
@@ -41,8 +43,7 @@ Student & Student::operator=(const Student &right) {
     // They avoid problems with self-assignment where you might free up
     // memory before you copy from it.  (e.g. x = x)
 
-    if (&right == this)
-    return (*this);
+    if (&right == this) return (*this);
     setName(right.getName());
     setPerm(right.getPerm());
     // KEEP THE CODE BELOW THIS LINE
