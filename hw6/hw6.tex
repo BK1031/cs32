@@ -30,7 +30,7 @@
 \maketitle
 \textbf{Due: 4/20 12:30pm} \\ 
 \vspace{1em}
-\textbf{Name \& Perm \# (no partners allowed):} \\ 
+\textbf{Name \& Perm \# (no partners allowed): Bharat Kathi (5938444)} \\ 
 \vspace{1em}
 \textbf{Reading:} DS 9.1, PS 14.1 and 14.2
 
@@ -41,9 +41,17 @@ List two important pieces of information stored in an \textbf{activation record}
 discussed on p. 442 in DS):
 \begin{enumerate}
 \item (5 pts)
-\vspace{3em}
+
+\begin{description}
+  \item[Answer:] where the function should return when it's done with its computation
+\end{description}
+
 \item (5 pts)
-\vspace{3em}
+
+\begin{description}
+  \item[Answer:] values of the functions local variables and parameters
+\end{description}
+
 \end{enumerate}
 
 \section{}
@@ -59,8 +67,16 @@ incorrectly that could lead to stack overflow. Hint: one has something to do
 with the base case, and the other with the recursive call.
 \begin{enumerate}
 \item (5 pts)
-\vspace{6em}
+
+\begin{description}
+  \item[Answer:] If you have an incorrectly setup base case (or none at all) the function will never stop calling itself, resulting in a stack overflow.
+\end{description}
+
 \item (5 pts)
+
+\begin{description}
+  \item[Answer:] You can also just have too many recursive calls before the base case is hit, leading to a stack overflow.
+\end{description}
 \end{enumerate}
 
 \newpage
@@ -85,14 +101,29 @@ in your solution.
 \begin{verbatim}
 #include <iostream>
 using namespace std;
+
+void printList(const Node* head) const {
+  Node *n = head;
+  while (n) {
+    cout << n->data << endl;
+    n = n->next;
+  }
+}
 \end{verbatim}
-\vspace{15em}
+\vspace{5em}
 
 \item (10 pts) Rewrite the \texttt{printList(const Node* head)} function from part 1
 \textbf{recursively}.
 \begin{verbatim}
 #include <iostream>
 using namespace std;
+
+void printList(const Node* head) const {
+  if (head == nullptr) return;
+  cout << head->data << endl;
+  printList(head->next);
+}
+
 \end{verbatim}
 \end{enumerate}
 \end{document}
