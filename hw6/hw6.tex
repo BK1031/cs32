@@ -1,0 +1,98 @@
+% Created 2022-04-10 Sun 02:59
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 6: Recursive Algorithms Review}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 6: Recursive Algorithms Review},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 4/20 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \# (no partners allowed):} \\ 
+\vspace{1em}
+\textbf{Reading:} DS 9.1, PS 14.1 and 14.2
+
+
+\section{}
+\label{sec:org47c0ffe}
+List two important pieces of information stored in an \textbf{activation record} (as
+discussed on p. 442 in DS):
+\begin{enumerate}
+\item (5 pts)
+\vspace{3em}
+\item (5 pts)
+\vspace{3em}
+\end{enumerate}
+
+\section{}
+\label{sec:orgdfdbaaf}
+There are two important parts to every simple recursive function: the base
+case, and the recursive call that makes progress towards the base
+case.\footnote{There are other forms of recursion, such as "mutual recursion", where
+\texttt{foo()} calls \texttt{bar()} and \texttt{bar()} calls \texttt{foo()}, but let's set those aside for
+the moment, and deal only with simple recursive functions.} Something that can
+go wrong with recursion when it is used incorrectly is a \textbf{stack
+overflow}. Explain two different ways that a recursive function could be writen
+incorrectly that could lead to stack overflow. Hint: one has something to do
+with the base case, and the other with the recursive call.
+\begin{enumerate}
+\item (5 pts)
+\vspace{6em}
+\item (5 pts)
+\end{enumerate}
+
+\newpage
+
+\section{}
+\label{sec:org79a0610}
+Given a fairly common definition for a \textbf{struct Node} that can be used to make
+a singly linked list of int values:
+
+\begin{verbatim}
+struct Node {
+  int data;
+  Node *next;
+}
+\end{verbatim}
+\begin{enumerate}
+\item (10pts) Write an \textbf{iterative} function \texttt{printList(const Node* head)} that takes a
+pointer to the head Node of the singly linked list and prints each value of
+the linked list, one per line. Write the entire function (including the
+function signature), and be sure to write correct and compilable C++ code
+in your solution.
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+\end{verbatim}
+\vspace{15em}
+
+\item (10 pts) Rewrite the \texttt{printList(const Node* head)} function from part 1
+\textbf{recursively}.
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+\end{verbatim}
+\end{enumerate}
+\end{document}

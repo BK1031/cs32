@@ -1,0 +1,218 @@
+% Created 2022-04-10 Sun 02:58
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 5: Class Design}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 5: Class Design},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 4/20 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\vspace{1em}
+\textbf{Reading:} "Class Design", DS 2
+
+In CMPSC 24, you likely already read parts of Chapter 2. I want to
+invite you to read it again, for two reasons: (1) to review parts you
+may have skipped or skimmed over the first time (2) to revisit things
+that you may have read many weeks or months ago, and that may not have
+fully made sense to you at the time.
+
+I've included some questions here on a few of the important points
+from Chapter 2, but these are \textbf{not} the only things you need from
+Chapter 2. I don't have enough room on the page to give you homework
+over everything from Chapter 2 you need to learn. Read few this
+material a few times between now and the first exam.
+
+\section{}
+\label{sec:org6d9f545}
+
+According to Chapter 2 of DS:
+
+\begin{enumerate}
+\item (4 pts) In C++ if you write a class, but do not specify any
+constructors, what happens?
+
+\begin{description}
+  \item[Answer:] The compiler will automatically create a default constructor. This constructor will just call the default contrustors for the member variables of your class.
+\end{description}
+
+\vspace{4em}
+\item (4 pts) When you implement a so-called "default constructor" in
+C++, what specific capability does this give the user of your
+class? (By specific, I mean what capability does the default
+constructor give that is distinguished from other kinds of
+constructors?)
+
+\begin{description}
+  \item[Answer:] Declaring a default constructor allows users of your class to declare variables of your class without having to actually provide any arguments for a constructor.
+\end{description}
+
+\vspace{4em}
+\item (4 pts) Suppose you are writing a class called Student that has
+two private members, \texttt{std::string name} and \texttt{int perm}. Write the
+function prototype (function declaration) \textbf{only} for a default
+constructor for Student. For full credit, include the semicolon
+that terminates the prototype, but \textbf{do not} write the body of the
+constructor
+
+\begin{description}
+  \item[Answer:] 
+  \begin{verbatim}
+    Student();
+  \end{verbatim}
+\end{description}
+
+\vspace{4em}
+\end{enumerate}
+
+\section{}
+\label{sec:org2b12c8a}
+
+Before enrolling in CMPSC 32, you should have learned about stacks
+in CMPSC 24 (or an equivalent course). We will talk about a few
+things about an example stack implementation as a C++ \texttt{class}, then
+ask a few questions---these are designed to check your understanding
+of some important ideas about ADTs and C++ classes from Chapter 2 of
+DS.
+
+Suppose we implement a class for a stack of integers, called
+\texttt{IntStack}.  Our implementation uses a variable \texttt{int
+  stack[MAX\_SIZE]} and a variable \texttt{int size}. The constant \texttt{MAX\_SIZE}
+may be declared as \texttt{const int MAX\_SIZE=100}, for example. I will
+have methods \texttt{push}, \texttt{pop}, \texttt{isEmpty} and since our implementation
+has a max size, \texttt{isFull}.
+
+If we declare a method with the function prototype \texttt{bool isEmpty() const},
+I have the option of putting the function body either in a separate
+IntStack.cpp file, or directly inside the IntStack.h file like this:
+
+\begin{verbatim}
+// If this is in the header file, it should be declared
+// `inline`. Otherwise, we get multiple definitions!
+bool isEmpty() const { return size == 0; }
+\end{verbatim}
+
+\begin{enumerate}
+\item (2 pts) According to C++ recommended practice, in which
+section of the class should we find the declarations of
+\texttt{int stack[MAX\_SIZE];} and \texttt{int size;}?
+
+\textbf{Circle one:} public \(\quad\) private
+
+\begin{description}
+  \item[Answer:] private
+\end{description}
+
+\item (2 pts) When we put the method body (e.g. \texttt{\{ return size ==
+     0; \}} for \texttt{isEmpty} inside the class declaration (i.e. in
+the \texttt{IntStack.h} file) that makes \texttt{isEmpty} a special type
+of member function (three word phrase with initials
+IMF). What does IMF stand for?
+
+\begin{description}
+  \item[Answer:] IMF stands for Inline Member Function.
+\end{description}
+
+\vspace{4em}
+\item (3 pts) What is one thing that is different about IMF from
+the perspective of how they are treated by the compiler?
+
+\begin{description}
+  \item[Answer:] The compiler will recompile the inline member function declaration and place a copy of it in your code. This saves some execution time sicne there is no seperate function call and return, but it also inefficient in space.
+\end{description}
+
+\vspace{4em}
+\item (4 pts) What is the significance of the keyword \texttt{const}
+that appears after \texttt{isEmpty}?
+
+\begin{description}
+  \item[Answer:] This means that the function does not modify any class member variables. This helps protect the function from accidently modifying member variables.
+\end{description}
+
+\vspace{4em}
+\item (4 pts) Would \texttt{const} be appropriate for the \texttt{pop} operation?
+
+\textbf{Circle one:} yes \(\quad\) no \\ 
+ \emph{Briefly} explain your answer. 
+
+ \begin{description}
+   \item[Answer:] No, since the function needs to modify the integer stack by removing the top element.
+ \end{description}
+
+\vspace{4em}
+\item (4 pts) Would \texttt{const} be appropriate for the \texttt{isFull} operation?
+
+\textbf{Circle one:} yes \(\quad\) no \\ 
+ \emph{Briefly} explain your answer. 
+
+ \begin{description}
+  \item[Answer:] Yes, since the function does not need to modify the values of any member variables.
+\end{description}
+\vspace{4em}
+\end{enumerate}
+
+\section{}
+\label{sec:org81d0200}
+
+DS Chapter 2 refers to something called a macro guard. This is a set
+of two pre-processor directives that appear at the start of a file,
+and one that appears at the end of a file. DS's macro guard for a
+file \texttt{throttle.h} uses a symbol \texttt{MAIN\_SAVITCH\_THROTTLE}, but it
+would be more traditional to use a symbol such as \texttt{THROTTLE\_H} (the
+name of the file, with underscores after, and replacing the
+dot\footnote{We do not put an underscore before because the identifiers
+beginning with an underscore and a capital letter are reserved for
+the compiler and the standard library.}). Another alternative that
+is common in large code bases is to guard a file \texttt{foo/bar/baz.h}
+with \texttt{FOO\_BAR\_BAZ\_H} to encode the full file path (with underscore
+replacing the slash and the dot).
+
+\begin{enumerate}
+\item (4 pts) Write a macro guard for a file called \texttt{IntStack.h},
+using the symbol \texttt{INTSTACK\_H}. Put an ellipsis \texttt{...} in the
+place between the first two lines and the last line.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+    #ifndef INTSTACK_H
+    #define INTSTACK_H
+    ...
+    #endif
+  \end{verbatim}
+\end{description}
+
+\vspace{6em}
+\item (5 pts) What is the purpose of a macro guard?
+
+\begin{description}
+  \item[Answer:] Macro gaurds help avoid duplicate class definitions by putting class header definitions inside a compiler directive.
+\end{description}
+
+\end{enumerate}
+\end{document}
