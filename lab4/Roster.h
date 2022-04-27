@@ -35,8 +35,7 @@ class Roster {
   // should probably be private.  We expose them as
   // public so they are easily unit testable.
 
-  void sortByPermHelper(int k); // swaps max perm from [0..k-1] with elem 
-[k-1]
+  void sortByPermHelper(int k); // swaps max perm from [0..k-1] with elem [k-1]
   int indexOfMaxPermAmongFirstKStudents(int k) const;
 
  private:
