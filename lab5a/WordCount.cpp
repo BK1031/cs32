@@ -18,8 +18,8 @@ size_t WordCount::hash(const std::string & word) const {
 
 int WordCount::getTotalWords() const {
 	int count = 0;
-    for (int i = 0; i < CAPACITY; i++) {
-        for (int j = 0; j < table[i].size(); j++) {
+    for (size_t i = 0; i < CAPACITY; i++) {
+        for (size_t j = 0; j < table[i].size(); j++) {
             if (table[i].at(j).first != "") {
                 count += table[i].at(j).second;
             }
@@ -30,8 +30,8 @@ int WordCount::getTotalWords() const {
 
 int WordCount::getNumUniqueWords() const {
     int count = 0;
-    for (int i = 0; i < CAPACITY; i++) {
-        for (int j = 0; j < table[i].size(); j++) {
+    for (size_t i = 0; i < CAPACITY; i++) {
+        for (size_t j = 0; j < table[i].size(); j++) {
             if (table[i].at(j).first != "" && table[i].at(j).second >= 1) {
                 count++;
             }
@@ -43,8 +43,8 @@ int WordCount::getNumUniqueWords() const {
 int WordCount::getWordCount(const std::string & word) const {
     int count = 0;
     std::string validWord = makeValidWord(word);
-    for (int i = 0; i < CAPACITY; i++) {
-        for (int j = 0; j < table[i].size(); j++) {
+    for (size_t i = 0; i < CAPACITY; i++) {
+        for (size_t j = 0; j < table[i].size(); j++) {
             if (table[i].at(j).first == validWord) {
                 count = table[i].at(j).second;
             }
@@ -60,7 +60,7 @@ int WordCount::incrWordCount(const std::string & word) {
         return 0;
     }
     size_t index = hash(validWord);
-    for (int i = 0; i < table[index].size(); i++) {
+    for (size_t i = 0; i < table[index].size(); i++) {
         if (table[index].at(i).first == validWord) {
             table[index].at(i).second++;
             count = table[index].at(i).second;
@@ -77,7 +77,7 @@ int WordCount::decrWordCount(const std::string & word) {
     int count = 0;
     std::string validWord = makeValidWord(word);
     size_t index = hash(validWord);
-    for (int i = 0; i < table[index].size(); i++) {
+    for (size_t i = 0; i < table[index].size(); i++) {
         if (table[index].at(i).first == validWord && table[index].at(i).second > 1) {
             table[index].at(i).second--;
             count = table[index].at(i).second;
@@ -102,7 +102,7 @@ bool WordCount::isWordChar(char c) {
 std::string WordCount::makeValidWord(const std::string & word) {
     std::string validWord = "";
 
-    for (int i = 0; i < word.length(); i++) {
+    for (size_t i = 0; i < word.length(); i++) {
         if (isWordChar(word[i]) == true) {
             validWord += tolower(word[i]);
         }
