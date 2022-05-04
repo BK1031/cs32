@@ -17,36 +17,106 @@ size_t WordCount::hash(const std::string & word) const {
 }
 
 int WordCount::getTotalWords() const {
-	// STUB.
-	return -1;
+	int count = 0;
+    for (int i = 0; i < CAPACITY; i++) {
+        for (int j = 0; j < table[i].size(); j++) {
+            if (table[i].at(j).first != "") {
+                count += table[i].at(j).second;
+            }
+        }
+    }
+	return count;
 }
 
 int WordCount::getNumUniqueWords() const {
-	// STUB
-	return -1;
+    int count = 0;
+    for (int i = 0; i < CAPACITY; i++) {
+        for (int j = 0; j < table[i].size(); j++) {
+            if (table[i].at(j).first != "" && table[i].at(j).second >= 1) {
+                count++;
+            }
+        }
+    }
+    return count;
 }
 
 int WordCount::getWordCount(const std::string & word) const {
-	// STUB
-	return -1;
+    int count = 0;
+    std::string validWord = makeValidWord(word);
+    for (int i = 0; i < CAPACITY; i++) {
+        for (int j = 0; j < table[i].size(); j++) {
+            if (table[i].at(j).first == validWord) {
+                count = table[i].at(j).second;
+            }
+        }
+    }
+    return count;
 }
 	
 int WordCount::incrWordCount(const std::string & word) {
-	// STUB
-	return -1;
+    int count = -1;
+    std::string validWord = makeValidWord(word);
+    if (validWord == "") {
+        return 0;
+    }
+    size_t index = hash(validWord);
+    for (int i = 0; i < table[index].size(); i++) {
+        if (table[index].at(i).first == validWord) {
+            table[index].at(i).second++;
+            count = table[index].at(i).second;
+            return count;
+        }
+    }
+    pair<std::string, int> PAIR(validWord, 1);
+    table[index].push_back(PAIR);
+    count = 1;
+    return count;
 }
 
 int WordCount::decrWordCount(const std::string & word) {
-	// STUB
-	return -2;
+    int count = 0;
+    std::string validWord = makeValidWord(word);
+    size_t index = hash(validWord);
+    for (int i = 0; i < table[index].size(); i++) {
+        if (table[index].at(i).first == validWord && table[index].at(i).second > 1) {
+            table[index].at(i).second--;
+            count = table[index].at(i).second;
+            return count;
+        }
+        if (table[index].at(i).first == validWord && table[index].at(i).second == 1) {
+            table[index].erase(table[index].begin() + i);
+            return count;
+        }
+    }
+    count = -1;
+    return count;
 }
 
 bool WordCount::isWordChar(char c) {
-	// STUB
-	return false;
+    if (isalpha(c)) {
+        return true;
+    }
+    return false;
 }
 
 std::string WordCount::makeValidWord(const std::string & word) {
-	// STUB
-	return "";
+    std::string validWord = "";
+
+    for (int i = 0; i < word.length(); i++) {
+        if (isWordChar(word[i]) == true) {
+            validWord += tolower(word[i]);
+        }
+        else if (word[i] == '-' || word[i] == '\'') {
+            if (validWord.length() != 0 && i < word.length() - 1) {
+                validWord += word[i];
+            }
+        }
+    }
+    if (validWord[0] == '-' || validWord[0] == '\'') {
+        validWord = validWord.substr(1, validWord.length());
+    }
+    if (validWord[validWord.length() - 1] == '-' || validWord[validWord.length() - 1] == '\'') {
+        validWord = validWord.substr(0, validWord.length() - 1);
+    }
+    return validWord;
 }

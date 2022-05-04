@@ -60,7 +60,7 @@ public:
   // Words cannot contain any digits, or special characters EXCEPT for
   // hyphens (-) and apostrophes (') that occur in the middle of a
   // valid word (the first and last characters of a word must be an alpha
-  // character). All upper case characters in the word should be convertd
+  // character). All upper case characters in the word should be converted
   // to lower case.
   //
   // For example, "can't" and "good-hearted" are considered valid words.
