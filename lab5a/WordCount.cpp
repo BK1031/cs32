@@ -112,10 +112,10 @@ std::string WordCount::makeValidWord(const std::string & word) {
             }
         }
     }
-    if (validWord[0] == '-' || validWord[0] == '\'') {
+    while (validWord[0] == '-' || validWord[0] == '\'') {
         validWord = validWord.substr(1, validWord.length());
     }
-    if (validWord[validWord.length() - 1] == '-' || validWord[validWord.length() - 1] == '\'') {
+    while (validWord[validWord.length() - 1] == '-' || validWord[validWord.length() - 1] == '\'') {
         validWord = validWord.substr(0, validWord.length() - 1);
     }
     return validWord;

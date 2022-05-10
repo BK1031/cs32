@@ -97,6 +97,16 @@ void Roster::sortByPerm() {
     }
 }
 
+void Roster::sortByPermHelper(int k) {
+    // swaps max perm from [0..k-1] with elem [k-1]
+    int im = indexOfMaxPermAmongFirstKStudents(k);
+    // now swap the pointers between index im and index k-1
+    Student *temp = students[im];
+    students[im] = students[k-1];
+    students[k-1] = temp;
+}
+
+
 int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
     int max = 0;
     int maxIndex = 0;
@@ -109,13 +119,3 @@ int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
     }
     return maxIndex;
 }
-
-void Roster::sortByPermHelper(int k) {
-    // swaps max perm from [0..k-1] with elem [k-1]
-    int im = indexOfMaxPermAmongFirstKStudents(k);
-    // now swap the pointers between index im and index k-1
-    Student *temp = students[im];
-    students[im] = students[k-1];
-    students[k-1] = temp;
-}
-
