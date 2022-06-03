@@ -1,0 +1,98 @@
+% Created 2022-04-18 Mon 05:05
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 8: Merge Sort and Quicksort}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 8: Merge Sort and Quicksort},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 05/04 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \# (no partners allowed): Bharat Kathi (593844)} \\ 
+\vspace{1em}
+\textbf{Reading:} DS 13.2
+
+\section{}
+\label{sec:org453d831}
+Circle the big-O \emph{worst-case} running time for sorting an array of \(n\)
+elements using
+\begin{itemize}
+\item (3 pts) Merge sort: \(\bigO(1) \quad \bigO(\log n) \quad \bigO(n) \quad \bigO(n \log n) \quad \bigO(n^2) \quad \bigO(n^2 \log n)\)
+\begin{description}
+    \item[Answer:] $O(n~log~n)$
+\end{description}
+\item (3 pts) Quicksort: \(\bigO(1) \quad \bigO(\log n) \quad \bigO(n) \quad \bigO(n \log n) \quad \bigO(n^2) \quad \bigO(n^2 \log n)\)
+\begin{description}
+    \item[Answer:] $O(n^2)$
+\end{description}
+\end{itemize}
+
+\section{}
+\label{sec:org92dd408}
+Circle the big-O \emph{average-case} running time for sorting an array of \(n\)
+elements using
+\begin{itemize}
+\item (3 pts) Merge sort: \(\bigO(1) \quad \bigO(\log n) \quad \bigO(n) \quad \bigO(n \log n) \quad \bigO(n^2) \quad \bigO(n^2 \log n)\)
+\begin{description}
+    \item[Answer:] $O(n~log~n)$
+\end{description}
+\item (3 pts) Quicksort: \(\bigO(1) \quad \bigO(\log n) \quad \bigO(n) \quad \bigO(n \log n) \quad \bigO(n^2) \quad \bigO(n^2 \log n)\)
+\begin{description}
+    \item[Answer:] $O(n~log~n)$
+\end{description}
+\newpage
+\end{itemize}
+
+\section{}
+\label{sec:org78cd8d6}
+Both merge sort and quicksort are divide-and-conquer algorithms.
+
+\begin{itemize}
+\item (4 pts) What is the main idea behind divide-and-conquer?
+\begin{description}
+    \item[Answer:] The main idea is to breakdown a problem into multiple similar, but simpler, subproblems. Then by solving each of these subproblems, we can more efficiently create a combined solution to the original problem.
+\end{description}
+
+\item (4 pts) Describe briefly how divide-and-conquer applies to merge sort.
+\begin{description}
+    \item[Answer:] Merge sort methodically breaks down a list into several sublists by splitting the list in each iteration until each sublist only contains a single element. This step uses the afformentioned divide and conquer approach sicne the problem is being broken down into smaller subproblems, or sublists in this case. These sublists are merged back together in each turn, sorting the elements as it goes.
+\end{description}
+
+\item (4 pts) Describe briefly how divide-and-conquer applies to quicksort.
+\begin{description}
+    \item[Answer:] Quicksort works by breaking a list into smaller lists and swapping the smaller lists about a ’pivot’ element. In each iteration, the list is split more and more with new pivot elements, one on the left and one on the right, chosen each time. This is a utilization of divide-and-conquer.
+\end{description}
+
+\item (6 pts) Quicksort and merge sort are similar in that both are built on
+divide-and-conquer. Briefly highlight the \emph{differences} between merge sort
+and quicksort.
+\begin{description}
+    \item[Answer:] Merge sort divides the array completely into single elements before performing any comparisons and sorting as it merges. Quicksort, on the other hand, makes comparisons with the pivot element and swaps elements into sorted order as it divides the array. Quicksort has a worst case runtime of $O(n^2)$ whereas merge sort has a worst case runtime of $O(n~log~n)$.
+\end{description}
+
+\item (6 pts) Briefly describe the role of the pivot element in quicksort.
+\begin{description}
+    \item[Answer:] The pivot element is a list or sublist around which the list or sublist is divided in each iteration. The elements are compared to the pivot, and greater elements form the right sublist and smaller elements form the left sublist. A new pivot is chosen for each sublist, and the cycle continues.
+\end{description}
+\end{itemize}
+\end{document}

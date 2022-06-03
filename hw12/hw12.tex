@@ -1,0 +1,205 @@
+% Created 2021-11-02 Tue 22:39
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Fall '21}
+\title{Homework 12: Dynamic Dispatch and Polymorphism}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 12: Dynamic Dispatch and Polymorphism},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 11/2 2pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} PS 15.3
+
+\section{(10 pts)}
+\label{sec:org529e27b}
+
+In the lectures, I mentioned \emph{dynamic dispatch} is a form of polymorphism, and
+that some object-oriented programming resources mistakenly conflate the two.
+
+\begin{enumerate}
+\item (4 pts) What is dynamic dispatch? Why is it "dynamic"? Explain briefly.
+
+\begin{description}
+    \item[Answer:] Dynamic dispatch is one form of polymorphism in which objects behave appropriately given their constructed type, even if assigned to a base class type. It is called "dynamic" since the imple- mentation for a virtual function is not fixed or apparent during compilation until it is used in the program, during which the appropriate implementation is dynamically chosen.
+\end{description}
+
+\item (4 pts) What is the purpose of polymorphism? How does it differ from
+dynamic dispatch? Polymorphism is more general than dynamic dispatch,
+explain how it is more general.
+
+\begin{description}
+    \item[Answer:] In polymorphism, an operation has more than one implementation. As such, dynamic dispatch is a form of polymorphism since functions can have the same name, but different implementations that are chosen during run-time. However, polymorphic functions and classes can also build upon each other, with different implementations being bound during compile-time.
+\end{description}
+
+\end{enumerate}
+
+\section{}
+\label{sec:org1480e3c}
+
+On page 868 in PS, in Display 15.12, line 17, there is a use of the
+overloaded operator \texttt{<} on two objects, one of type \texttt{Sale} and another
+of type \texttt{DiscountSale}. The definition of that operator appears on lines
+25 - 28 of Display 15.10 on p. 866. On line 27, there is an invocation
+of \texttt{first.bill()} and an invocation of \texttt{second.bill()}.
+
+\begin{enumerate}
+\item (2 pts) For \texttt{first.bill()} in the case of the invocation in Display 15.12
+line 17, where is the definition of the member function bill() that is
+invoked? Give the name of the class whose \texttt{bill()} function is invoked.
+
+\begin{description}
+    \item[Answer:] .\\
+    \begin{verbatim}
+        Sale
+    \end{verbatim}
+\end{description}
+
+\item (2 pts) For \texttt{second.bill()} in the case of the invocation in Display 15.12
+line 17, where is the definition of the member function bill() that is
+invoked? Give the name of the class whose \texttt{bill()} function is invoked.
+
+\begin{description}
+    \item[Answer:] .\\
+    \begin{verbatim}
+        DiscountSale
+    \end{verbatim}
+\end{description}
+
+\item (2 pts) The \texttt{bill()} member function is special in that the exact definition
+of the function used depends on what type of object it is invoked on--whether
+it is an instance of \texttt{Sale} or \texttt{DiscountSale}, which may not be known until
+run-time. What is the C++ keyword that is used in the definition of \texttt{bill()}
+that signals this so called \emph{dynamic dispatch} of the member function?
+
+\begin{description}
+    \item[Answer:] .\\
+    \begin{verbatim}
+        virtual
+    \end{verbatim}
+\end{description}
+
+\end{enumerate}
+
+\section{(8 pts)}
+\label{sec:orga7bbaa9}
+  Assume we have a base class (e.g. Person) and derived class
+(e.g. Student), and there is some function such as \texttt{toString()} that is
+defined in both the base class and the dervied class.
+
+For example, suppose that:
+
+\begin{itemize}
+\item for Person, \texttt{toString} returns the person's name, e.g. Chris Gaucho
+\item for Student, \texttt{toString} returns the person's name and their perm
+number in parentheses. e.g. Chris Gaucho (1234567).
+\end{itemize}
+
+We say that \texttt{toString()} is \emph{overridding} in the derived class. However, in PS
+(15.3), Savitch makes a distinction between the two cases, one that is properly
+called \emph{overriding} and another that should really be called
+\emph{redefinition}. Most of the cases we've seen so far are really just
+\emph{redefinition}. What is different, according to Savitch, in the case where this
+should be called \emph{overriding}? Hint: the \texttt{override} keyword covered in class is
+relevant here.
+
+\begin{description}
+    \item[Answer:] The override keyword is used when the parent class also has a virtual method with the same signature so we are overriding its behavior rather than defining another method with the same name. In other words, if the function in the parent class is virtual, a child class would be overriding that function since a new implementation overrides the virtual one. If the function in the parent class isn’t virtual, then a child class would simply be redefining that function. Although, from a programmers perspective, this distinction seems unnecessary, it is important to the compiler since it is treated differently by the compiler.
+\end{description}
+
+\section{}
+\label{sec:org6f17df8}
+
+Given the following class definitions (you may assume all necessary
+libraries have already been included):
+
+\begin{verbatim}
+class A {
+public:
+    ~A() { cout << "A::~A()" << endl; }
+    void f1() { cout << "A::f1()" << endl; }
+    virtual void f2() { cout << "A::f2()" << endl; }
+};
+class B : public A {
+public:
+    virtual ~B() { cout << "B::~B()" << endl; }
+    virtual void f1() { cout << "B::f1()" << endl; }
+    void f2() { cout << "B::f2()" << endl; }
+    virtual void f3() = 0;
+};
+class C : public B {
+public:
+    ~C() { cout << "C::~C()" << endl; }
+    void f1() { cout << "C::f1()" << endl; }
+    virtual void f3() { cout << "C::f3()" << endl; }
+};
+\end{verbatim}
+
+\begin{enumerate}
+\item (6 pts) What will the output be if we ran the following code (be sure to
+include destructors' output):
+
+\begin{verbatim}
+void f1() { C c1; A a1 = c1; a1.f1(); a1.f2(); }
+
+int main() { f1(); }
+\end{verbatim}
+
+\begin{description}
+    \item[Answer:] .\\
+    \begin{verbatim}
+        A::f1()
+        A::f2()
+        A::~A()
+        C::~C()
+        B::~B()
+        A::~A()
+    \end{verbatim}
+\end{description}
+
+\item (6 pts) What will the output be if we ran the following code (be sure to
+include destructors' output):
+
+\begin{verbatim}
+void f2() { B* b1 = new C(); b1->f1(); b1->f2(); b1->f3(); delete b1; }
+
+int main() { f2(); }
+\end{verbatim}
+
+\begin{description}
+    \item[Answer:] .\\
+    \begin{verbatim}
+        C::f1()
+        B::f2()
+        C::f3()
+        C::~C()
+        B::~B()
+        A::~A()
+    \end{verbatim}
+\end{description}
+\end{enumerate}
+\end{document}

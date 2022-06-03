@@ -1,0 +1,171 @@
+% Created 2022-04-18 Mon 05:05
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 7: Sorting}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 7: Sorting},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 05/04 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \# (no partners allowed): Bharat Kathi (5938444)} \\ 
+\vspace{1em}
+\textbf{Reading:} DS 13.1, also review DS 12.1, 2.6, 6.1
+
+
+Please also read the handout at \url{http://cs.ucsb.edu/\~richert/cs32/misc/h07-handout.pdf}
+
+\section{(10 pts)}
+\label{sec:org60740aa}
+\textbf{Briefly} explain: What does it mean to say that an algorithm has \emph{quadratic}
+worst-case run time?
+
+\begin{description}
+    \item[Answer:] This means that the Big O notation for the worst-case runtime is $O(n^2)$. Specifically, it means that for the given $n$ inputs, the algorithm will perform some factorm of $n^2$ operations in its worst-case execution.
+\end{description}
+
+\section{}
+\label{sec:org9fa5c4e}
+Show the steps of bubble sort following the example of the solved problems on
+the handout for the algorithm and the format of your answer. \textbf{Stop after the
+first pass with no swaps.}
+
+\subsection{5 pts}
+\label{sec:orgac34f58}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 8 & 5 & 3 & 10 & 2\\
+\hline
+i = 4 & 5 & 3 & 8 & 2 & 10\\
+\hline
+i = 3 & 3 & 5 & 2 & 8 & 10\\
+\hline
+i = 2 & 3 & 2 & 5 & 8 & 10\\
+\hline
+i = 1 & 2 & 3 & 5 & 8 & 10\\
+\end{tabular}
+\end{center}
+
+\subsection{5 pts}
+\label{sec:orgeb32a4b}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 40 & 42 & -3 & 10 & 0\\
+\hline
+i = 4 & 40 & -3 & 10 & 0 & 42\\
+\hline
+i = 3 & -3 & 10 & 0 & 40 & 42\\
+\hline
+i = 2 & -3 & 0 & 10 & 40 & 42\\
+\hline
+i = 1 & -3 & 0 & 10 & 40 & 42\\
+\end{tabular}
+\end{center}
+
+
+\section{}
+\label{sec:org0da6c76}
+Show the steps of \textbf{insertion sort} \emph{following the example of the solved
+problems on the handout} for the algorithm and the format of your answer.
+
+
+\subsection{5 pts}
+\label{sec:org353c073}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 8 & 5 & 3 & 10 & 2\\
+\hline
+i = 0 & 10 & 8 & 5 & 3 & 2\\
+\hline
+i = 1 & 8 & 10 & 5 & 3 & 2\\
+\hline
+i = 2 & 5 & 8 & 10 & 3 & 2\\
+\hline
+i = 3 & 3 & 5 & 8 & 10 & 2\\
+\hline
+i = 4 & 2 & 3 & 5 & 8 & 10\\
+\end{tabular}
+\end{center}
+
+\subsection{5 pts}
+\label{sec:orga2d4b75}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 40 & 42 & -3 & 10 & 0\\
+\hline
+i = 0 & 40 & 42 & -3 & 10 & 0\\
+\hline
+i = 1 & 40 & 42 & -3 & 10 & 0\\
+\hline
+i = 2 & -3 & 40 & 42 & 10 & 0\\
+\hline
+i = 3 & -3 & 10 & 40 & 42 & 0\\
+\hline
+i = 4 & -3 & 0 & 10 & 40 & 42\\
+\end{tabular}
+\end{center}
+
+\section{}
+\label{sec:org9953340}
+Show the steps of \textbf{selection sort} \emph{following the example of the solved
+problems on the handout} for the algorithm and the format of your answer.
+\textbf{Show all rows even for passes that no swaps occur.}
+
+\subsection{5 pts}
+\label{sec:org715eabd}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 8 & 5 & 3 & 10 & 2\\
+\hline
+i = 4 & 8 & 5 & 3 & 2 & 10\\
+\hline
+i = 3 & 2 & 5 & 3 & 8 & 10\\
+\hline
+i = 2 & 2 & 3 & 5 & 8 & 10\\
+\hline
+i = 1 & 2 & 3 & 5 & 8 & 10\\
+\end{tabular}
+\end{center}
+
+\subsection{5 pts}
+\label{sec:org64dd6f6}
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+initial values & 40 & 42 & -3 & 10 & 0\\
+\hline
+i = 4 & 40 & 0 & -3 & 10 & 42\\
+\hline
+i = 3 & 10 & 0 & -3 & 40 & 42\\
+\hline
+i = 2 & -3 & 0 & 10 & 40 & 42\\
+\hline
+i = 1 & -3 & 0 & 10 & 40 & 42\\
+\end{tabular}
+\end{center}
+\end{document}

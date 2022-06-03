@@ -1,0 +1,97 @@
+% Created 2022-05-24 Tue 13:22
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 16: Move Semantics, Value Categories, and Smart Pointers}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 16: Move Semantics, Value Categories, and Smart Pointers},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 6/1 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} The relevant resources mentioned in lecture 14.
+
+\section{}
+\label{sec:org974f2d1}
+In class, we explored what \texttt{std::move} does, and did some experiments to show
+that \texttt{std::move(x)} doesn't actually move \texttt{x} anywhere. What is the semantics of \texttt{std::move} (that is, what does \texttt{std::move} actually do)?
+
+\begin{description}
+    \item[Answer:] std::move changes the expression from being a lvalue to a rvalue by returning the rvalue reference to the given argument. The compiler will chose to use the move assignment operator and move constructors over and copy assignment and copy constructor to actually move the values.
+\end{description}
+
+\section{2 pts}
+\label{sec:orgde6743a}
+
+In the \texttt{UniquePtr} class we developed in class, how we changed the copy and move
+constructors as well as the assignment operators to guarantee that only 1
+\texttt{UniquePtr} can point to an object at a time.
+
+How do the move constructor and the move assignment operator provide this guarantee?
+
+\begin{description}
+    \item[Answer:] The move copy constructor sets the other object to null. Then the move assignment operator deletes the previous object before making the new assignment.
+\end{description}
+
+\section{}
+\label{sec:org0750749}
+
+In the class, I argued that \texttt{std::unique\_ptr} is a good first choice when
+needing a pointer.
+
+\begin{enumerate}
+\item (1 pt) What is the advantage of \texttt{std::unique\_ptr} over a plain pointer (like \texttt{T *})?
+
+\begin{description}
+    \item[Answer:] std::uniqueptr has all the benefits of an optional. This means that it takes care of memory management while also acting as a pointer. It also has a move contstructor and move assignment operator instead of the copy versions. 
+\end{description}
+
+\item (2 pt) What are the two advantages of using \texttt{std::unique\_ptr} over \texttt{std::shared\_ptr}?
+
+\begin{description}
+    \item[Answer:] One advantage is that unique ptr will not leak memory when creating cyclic references. Another advantage is that unique ptr is not affected by the resource intensive increment and decrement reference costs, since it doesn't need reference counting.
+\end{description}
+
+\end{enumerate}
+
+\section{}
+\label{sec:org99d1331}
+Reference counting cannot detect that certain objects are not reachable (and can be safely destroyed).
+
+\begin{enumerate}
+\item (2 pt) What causes this limitation (how the objects should be used for reference counting to fail to determined that they are unreachable)?
+
+\begin{description}
+    \item[Answer:] This is caused when objects are used to create cyclic references, which is using pointers between objects which point to each other. 
+\end{description}
+
+\item (1 pt) What machinery is provided by the C++ standard library to get around this limitation?
+
+\begin{description}
+    \item[Answer:] \texttt{weak\char`_ptr}
+\end{description}
+
+\end{enumerate}
+\end{document}

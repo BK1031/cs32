@@ -9,11 +9,11 @@ WordCount::WordCount() {}
 
 // Simple hash function. Do not modify.
 size_t WordCount::hash(const std::string& word) const {
-	size_t accumulator = 0;
-	for (size_t i = 0; i < word.size(); i++) {
-		accumulator += word.at(i);
-	}
-	return accumulator % CAPACITY;
+    size_t accumulator = 0;
+    for (size_t i = 0; i < word.size(); i++) {
+        accumulator += word.at(i);
+    }
+    return accumulator % CAPACITY;
 }
 
 int WordCount::getTotalWords() const {
@@ -26,7 +26,7 @@ int WordCount::getTotalWords() const {
         }
     }
     return count;
-	return -1;
+    return -1;
 }
 
 int WordCount::getNumUniqueWords() const {
@@ -53,7 +53,7 @@ int WordCount::getWordCount(const std::string& word) const {
     }
     return count;
 }
-	
+
 int WordCount::incrWordCount(const std::string& word) {
     int count = -1;
     std::string validWord = makeValidWord(word);
@@ -164,13 +164,18 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 void WordCount::addAllWords(const std::string& text) {
     std::string word;
     for (size_t i = 0; i < text.length(); i++) {
-		if (text[i] == ' ' || text[i] == '\n' || text[i] == '\t') {
-			incrWordCount(word);
-			word = "";
-		}
-		else {
-			word += text[i];
-		}
-	}
+        if (text[i] == ' ' || text[i] == '\n' || text[i] == '\t' || i == text.length()) {
+//            cout << "Found blank: " << text[i] << endl;
+//            cout << "Saving word: " << word << endl;
+            incrWordCount(word);
+            word = "";
+        }
+        else {
+//            cout << "Found: " << text[i] << " at " << i << endl;
+            word += text[i];
+        }
+    }
+    // Add last word
+    incrWordCount(word);
     return;
 }

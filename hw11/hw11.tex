@@ -1,0 +1,144 @@
+% Created 2021-11-03 Wed 14:30
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Fall '21}
+\title{Homework 11: Inheritance and Derived Classes}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 11: Inheritance and Derived Classes},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 11/2 2pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} PS 15.1, 15.2, DS 14.1
+
+\section{}
+\label{sec:orgf1389b4}
+
+For each statement, indicate if it is True or False by circling T or F.
+If you need to cross out an answer, be sure that your final answer is
+clear and unambigous---otherwise it will receive no credit.
+
+\begin{center}
+\begin{tabular}{llll}
+(3 pts) & An object of a derived class has access to the public methods of its base class & T & \\
+(3 pts) & An object of a base class has access to the private helper methods of its derived class &  & F\\
+(3 pts) & Destructors are not inherited by derived classes & T & \\
+(3 pts) & An object of a derived class inherits the copy constructor of its base class &  & F\\
+(3 pts) & Operators are passed down inheritance hierarchies & T & \\
+(3 pts) & Destructors in derived classes are called after their base class calls its destructor &  & F\\
+(3 pts) & Constructors of base classes are accessible by derived classes & T & \\
+\end{tabular}
+\end{center}
+
+\section{}
+\label{sec:org15ab71b}
+
+Assume there is a class called \textbf{Student} that has private member variables
+\texttt{string name, int perm}. Assume that Student has getters and setters for each of
+these data members \texttt{getName}, \texttt{setName}, \texttt{getPerm} and \texttt{setPerm}, and a
+constructor that takes \texttt{name} and \texttt{perm} as parameters.  Assume that the class
+is declare in file \texttt{student.h} . In other words, you are given the following
+class definition:
+
+\begin{verbatim}
+class Student {
+  std::string name;
+  int perm;
+public:
+  Student(std::string name, int perm) :
+    name(name), perm(perm) {}
+
+  const std::string & getName() const {
+    return name;
+  }
+
+  void setName(std::string name) {
+    this->name = name;
+  }
+
+  int getPerm() const {
+    return perm;
+  }
+
+  void setPerm(int perm) {
+    this->perm = perm;
+  }
+}
+\end{verbatim}
+
+\begin{enumerate}
+\item (8 pts) Write the contents of a .h file for a derived a class called
+\textbf{CmpscStudent} that inherits from \textbf{Student} and has additional data members
+including \texttt{*string* ugradDegreeType, *bool* graduateStudent}.  Include
+prototypes for a public constructor that initializes all of the data members
+of \textbf{CmpscStudent} as well as getters (but not setters) for the additional
+data members of CmpscStudent. Do not implement these constructors and methods
+as inline. Just give the prototypes in the class definition.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+    class CmpscStudent: public Student {
+      std::string ugradDegreeType;
+      bool graduateStudent;
+    public:
+       CmpscStudent(
+          string name,
+          int perm,
+          string ugradDegreeType,
+          bool graduateStudent
+       );
+       string getUgradDegreeType();
+       bool isGraduateStudent();
+    };
+    \end{verbatim}
+\end{description}
+
+\newpage
+
+\item (8 pts) Write the function definition for the constructor
+\textbf{CmpscStudent} that takes as its parameters all of the data members
+of CmpscStudent, and fully initializes the object being constructed,
+as it would appears in the .cpp file.
+
+\begin{description}
+  \item[Answer:] .\\
+  \begin{verbatim}
+       CmpscStudent::CmpscStudent(
+          string name,
+          int perm,
+          string ugradDegreeType,
+          bool graduateStudent
+       ) : Student(name, perm) {
+         this->ugradDegreeType = ugradDegreeType;
+         this->graduateStudent = graduateStudent;
+       }
+    \end{verbatim}
+\end{description}
+
+\end{enumerate}
+\end{document}

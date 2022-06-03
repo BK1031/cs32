@@ -1,0 +1,109 @@
+% Created 2022-04-30 Sat 17:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 10: Chained Hashing}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 10: Chained Hashing},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 5/11 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} DS 12.3
+
+Please also read the handout at
+\url{https://cs.ucsb.edu/\~richert/cs32/misc/h09-handout.pdf} . 
+
+\section{}
+\label{sec:orgfd34428}
+Hash functions are used when the main objective is to make searches as fast as
+possible, i.e. an expected time O(1) search operation. Consider the typical
+process of finding an element: an O(1) hash function H(x) computed on an item
+x, giving some numerical location for a program to search for a value. A hash
+collision in a chained hash table creates a linked list of all elements that
+collide at any one index i.
+\begin{enumerate}
+\item (4 pts) The phrase \textbf{load factor} is a technical term that arises in
+this context. Briefly: what does this term refer to?
+\vspace{12em}
+\item (4 pts) If something goes wrong, a chained hash strategy easily lead from an
+average case O(1) search operation to average case O(n) search
+operation. What is the circumstance in which things could go awry in this
+way? In other words, what is the worst-case scenario for chained hashing?
+\emph{Briefly} describe.
+\vspace{12em}
+\end{enumerate}
+
+\newpage
+
+\section{}
+\label{sec:orgb45c31c}
+Suppose that you are going to implement (without use of the STL) a chained
+hashing scheme for objects of class Student, using a hash over the perm
+number, using chained hashing. Suppose that a constant \texttt{ARRAY\_SIZE}
+has been defined as the size of an array, and each element in that array
+should be the head of a linked list of Students that hashes to the index of
+that element.
+\begin{enumerate}
+\item (4 pts) Write a C++ definition for a struct that can
+represent a node in each of these linked lists.
+\vspace{8em}
+\item (4 pts) Write a line of C++ that, if it appeared in the \texttt{private:} section
+of the class definition for \texttt{class StudentHashTable}, would represent a
+suitable array for the values, assuming that array was allocated on the heap
+in the constructor of \texttt{class StudentHashtable}
+\vspace{8em}
+\item (8 pts) Write the definition of the constructor for
+\texttt{StudentHashTable} as it would appear in the .cpp file. Be sure
+to both allocate the space for the array on the heap, and set
+all of the pointers in that array to null.
+\vspace{10em}
+\end{enumerate}
+
+\section{(10 pts)}
+\label{sec:org72c5b2a}
+  Given the series of inputs [45, 7, 46, 90, 34, 6, 7, 71, 23, 24], insert each
+of these integers into the chained hash table below, with a hash function
+defined by \(H(x)= x \mod \mathit{tableSize}\). Draw in the linked lists to the
+right of each array index, showing a pointer to null as the end of each
+list. The Handout for this assignment has examples of the format we want for
+your answer.
+
+\begin{center}
+\begin{tabular}{rl}
+index & list (you may need to edit this to make it longer)\\
+\hline
+0 & \\
+\hline
+1 & \\
+\hline
+2 & \\
+\hline
+3 & \\
+\hline
+4 & \\
+\end{tabular}
+\end{center}
+\end{document}

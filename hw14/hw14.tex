@@ -1,0 +1,238 @@
+% Created 2022-05-15 Sun 20:10
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 14: Operating Systems and Processes}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 14: Operating Systems and Processes},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 5/25 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} Chapters 3, 4, and 5 of \href{https://pages.cs.wisc.edu/\~remzi/OSTEP/}{Operating Systems: Three Easy Pieces} (you can
+download them from the web page, also you can skip the "Homework" sections).
+Also, the chapters from the UNIX textbook (available from GauchoSpace).
+
+\section{\(2 pts\)}
+\label{sec:org71cf4d4}
+
+In a brief sentence, describe the difference between a process and a program, as
+defined by Arpaci-Dusseaus.
+
+\begin{description}
+    \item[Answer:] A program is simply a set of instructions and corresponding static data, whereas a process is an instance of a program in execution, containing the state of the program.
+\end{description}
+
+\section{\(3 pts\)}
+\label{sec:orgf9eff4f}
+
+In class, we discussed three objectives of an operating system. List them below:
+
+\begin{enumerate}
+\item Abstracting \texttt{system calls}
+\vspace{2em}
+\item Isolating \texttt{application memory}
+\vspace{2em}
+\item Managing \texttt{system resources}
+\vspace{2em}
+\end{enumerate}
+
+\section{\(3 pts\)}
+\label{sec:org8a8a269}
+
+Arpaci-Dusseaus describe a process being in one of 3 states at any
+point. Describe each of these states \textbf{with your own words}:
+
+\begin{enumerate}
+\item Running: The process is currently executing instructions on a processor.
+\item Ready: The process is ready to run, but the OS has not instructed the process to begin running yet.
+\item Blocked: The process did something that is preventing it from continuing to execute, it is now waiting on a dependedent event to happen before if can continue execution.
+\end{enumerate}
+
+\section{}
+\label{sec:orgb779dc5}
+
+The history of Unix as an OS (and then, the history of all Operating
+Systems, including those derived from Unix, such as Linux, Mac OS X,
+etc.) was heavily influenced by the choice of programming language in
+which Unix was first implemented.
+
+\begin{enumerate}
+\item (1 pts) What programming language was chosen for the first
+implementation of Unix?
+
+\begin{description}
+    \item[Answer:] UNIX was originally written using assembly, but was soon after rewritten in C.
+\end{description}
+
+\item (1 pts) Most other OS implementations, up to that point in time, had
+been written in what language?
+
+\begin{description}
+    \item[Answer:] Most other OS implementations were written in assembly at the time.
+\end{description}
+
+\item (2 pts) According to the authors, as a \emph{direct result of these two
+facts} (your answers to (a) and (b)), Unix had a distinct advantage
+over other OSes at the time. What was this advantage?
+
+\begin{description}
+    \item[Answer:] This meant that UNIX shipped with a C compiler by default. This not only made it easy for programmers to get in and start coding, but also made UNIX a very attractive option to build off of.
+\end{description}
+
+\end{enumerate}
+
+\section{}
+\label{sec:orgc12b0fa}
+
+In the Unix system, the “system call interface” provides entry points
+into \ldots{} something.
+
+\begin{enumerate}
+\item (2 pts) In a single word or short phrase (no more than four words)
+name what the system call interface provides an entry point into.
+
+\begin{description}
+    \item[Answer:] the UNIX kernel
+\end{description}
+
+\item (2 pts) Now, in a 2-3 sentences, describe what the phrase means. What
+is the “purpose” of the thing you named in part “a”?
+
+\begin{description}
+    \item[Answer:] The UNIX kernel is the part of the UNIX operating system that is always resident in memory and is responsible for managing all the interactions between hardware and software. This includes managing resources such as I/O, memory, CPU, cache, file systems, and network sockets.
+\end{description}
+\end{enumerate}
+
+\section{}
+\label{sec:org8f24839}
+
+If you want to “suspend” a program that is running in a shell, in order
+to get to the shell prompt and do a few commands, then resume that
+program, what can you do?
+
+\begin{enumerate}
+\item (2 pts) What do you type to suspend the current running program?
+
+\begin{description}
+    \item[Answer:] You can type Control+Z to suspend the currently running program.
+\end{description}
+
+\item (2 pts) What do you type to resume the suspended program?
+
+\begin{description}
+    \item[Answer:] You can use the bg or fg commands followed by the suspended proccess ID to resume a suspended program in the background or foreground, respectively.
+\end{description}
+\end{enumerate}
+
+\section{}
+\label{sec:orgd387d2e}
+
+The command \texttt{kill} is used to, as the name would suggest, manually end
+processes. \texttt{kill}'s primary function is to provide the user with control
+over processes that are running in the background and thus only
+accessible by a PID (process ID). \texttt{kill} features varying levels of
+ability to end process. Why is this fine-tuning useful? Answer the
+question by succinctly describing at least two different modes of \texttt{kill}
+and when each might be useful.
+
+\begin{enumerate}
+\item (2 pts)
+
+\begin{description}
+    \item[Answer:] SIGTERM (15) is the default and safest way to kill a process.
+\end{description}
+
+\item (2 pts)
+
+\begin{description}
+    \item[Answer:] SIGKILL (9) is more of a last-resort method to kill a procces as it does not save date or perform any system cleanup.
+\end{description}
+
+\end{enumerate}
+
+\section{}
+\label{sec:org6d48ef7}
+
+
+Suppose you have a hello.cpp file that you've compiled into a binary
+called ./hello. As you know, you can run this with the steps shown
+below:
+
+\begin{verbatim}
+-bash-4.2$ ./hello
+Hello, World
+-bash-4.2$
+\end{verbatim}
+
+In the steps shown, under the hood, somehow something called "fork"
+and "exec" are involved in getting this program to actually start
+running. And there is some kind of “parent” and “child”, somehow
+involved. For each of the following, describe its role, relating it to
+these concepts. Be \textbf{brief} but be \textbf{just specific enough} that the grader
+has NO DOUBT that you've read and understood the discussion of these
+concepts in the reading, and how each of them relates to running a
+./hello program.
+
+\begin{enumerate}
+\item (2 pts) fork
+
+\vspace{4em}
+
+\item (2 pts) exec
+
+\vspace{4em}
+
+\item (2 pts) parent
+
+\vspace{4em}
+
+\item (2 pts) child
+
+\vspace{4em}
+\end{enumerate}
+
+\section{}
+\label{sec:orgaa3ec2c}
+
+The \texttt{ps} command and the \texttt{jobs} command both list processes. Write a few
+words that distinguishes between the ways that they are used, that is:
+
+\begin{enumerate}
+\item (2 pts) What is a circumstance where \texttt{ps} is more appropriate than
+\texttt{jobs}?
+
+\begin{description}
+    \item[Answer:] ps is an external command which will tell you about all the proccesses running on a system. So if you want to know what procceses are running system-wide this is the command for that.
+\end{description}
+
+\item (2 pts) What is a circumstance where \texttt{jobs} is more appropriate than
+\texttt{ps}?
+
+\begin{description}
+    \item[Answer:] jobs is a shell internal command that can only show the jobs that the current shell is managing. So if you want to access information that is internal to the current shell session, such as the job numbers, then this would be the command for that.
+\end{description}
+\end{enumerate}
+\end{document}

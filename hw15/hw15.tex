@@ -1,0 +1,105 @@
+% Created 2022-05-24 Tue 13:22
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{../preamble}
+\author{Instructor: Mehmet Emre}
+\date{CS 32 Spring '22}
+\title{Homework 15: Threads}
+\hypersetup{
+ pdfauthor={Instructor: Mehmet Emre},
+ pdftitle={Homework 15: Threads},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\textbf{Due: 6/1 12:30pm} \\ 
+\vspace{1em}
+\textbf{Name \& Perm \#: Bharat Kathi (5938444)} \\ 
+\textbf{Homework buddy (leave blank if you worked alone):}
+
+\textbf{Reading:} Chapters 25, 26, and 28.1 of \href{https://pages.cs.wisc.edu/\~remzi/OSTEP/}{Operating Systems: Three Easy
+Pieces} (you can download them from the web page). The book uses a slightly
+different API for threads (POSIX threads rather than C++ thread API), and you
+don't need to learn the details of that API besides the main points the book
+explains.
+
+
+\section{(2 pts) What is the advantage of using threads over processes?}
+\label{sec:orgfcde0f0}
+
+\begin{description}
+    \item[Answer:] Threads are a lot less resource intensive and generate less overhead when compared to proccesses. Context switches are also much quicker between threads than between proccesses.
+\end{description}
+
+\section{}
+\label{sec:orge3fa15a}
+Arpaci-Dusseaus give an example program in Figure 26.6, and discuss that program
+in detail throughout section 3.
+
+\begin{enumerate}
+\item (1 pt) Their example has the same issue as the first version of the bank
+account program we looked at in the lecture. What is the name of the specific problem both programs share?
+
+\begin{description}
+    \item[Answer:] A race condition, specifically a data race.
+\end{description}
+
+\item (2 pts) What is the root cause of this problem?
+
+\begin{description}
+    \item[Answer:] Multiple threads are trying to access a shared resource in a critical section of code, resulting in a data race.
+\end{description}
+
+\item (2 pts) How do locks solve the problem?
+
+\begin{description}
+    \item[Answer:] Locks ensure that the first thread finishes executing in a critical section before allowing another thread to enter that section.
+\end{description}
+\newpage
+\end{enumerate}
+
+\section{}
+\label{sec:org5030ea7}
+Suppose we have a mutex lock \texttt{m} and a piece of code like the following:
+
+\begin{verbatim}
+m.lock(); // (*)
+// ...
+m.unlock(); // (**)
+\end{verbatim}
+
+Also assume that there are two threads in the program: \texttt{T1} and \texttt{T2}. Suppose
+\texttt{T1} starts running first and reaches the code marked with \texttt{...} (so it has already
+acquired the lock).
+
+\begin{enumerate}
+\item (1 pt) Suppose \texttt{T2} starts running the line marked with \texttt{(*)} while \texttt{T1} is running
+the code marked with \texttt{...}. What happens when \texttt{T2} runs the first line?
+
+\begin{description}
+    \item[Answer:] T2 will be waiting at the (*) line since the .lock() function will not return until T1 releases it.
+\end{description}
+
+\item (1 pt) After \texttt{T2} runs the first line of code, \texttt{T1} reaches the last line
+(marked with \texttt{(**)}). What will happen with respect to the execution of \texttt{T2}?
+
+\begin{description}
+    \item[Answer:] Now that T1 has reached the (**) line, the lock is released and T2 can now aquire the lock and continue its execution into the ... section.
+\end{description}
+
+\end{enumerate}
+\end{document}
